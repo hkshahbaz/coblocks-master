@@ -1,0 +1,18 @@
+@import "node_modules/@wordpress/base-styles/variables";
+@import "node_modules/@wordpress/base-styles/colors";
+@import "node_modules/@wordpress/base-styles/mixins";
+@import "node_modules/@wordpress/base-styles/breakpoints";
+
+.coblocks-settings-modal {
+	.components-base-control__help {
+		color: $gray-700;
+		display: block;
+		font-style: normal;
+		padding-left: 36px;
+		padding-top: 2px;
+
+		@include break-small() {
+			padding-left: 32px;
+		}
+	}
+}

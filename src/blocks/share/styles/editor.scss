@@ -1,0 +1,149 @@
+.wp-block-coblocks-social {
+
+	&__button {
+
+		&:active {
+			animation: none !important;
+		}
+
+		&.is-empty {
+			opacity: 0.4 !important;
+		}
+
+		&.is-selected {
+			opacity: 1;
+		}
+
+		&:not(.is-selected):hover {
+			opacity: 100;
+		}
+
+		&:focus {
+			box-shadow: 0 0 0 1px $white, 0 0 0 3px var(--wp-admin-theme-color, #007cba) !important;
+			outline: 2px solid transparent;
+			outline-offset: -2px;
+		}
+	}
+}
+
+.components-range-control + .components-coblocks-inspector__social-button-size {
+	margin-top: -13px !important;
+}
+
+.components-social-icons-list__label {
+	margin-bottom: 6px;
+}
+
+.edit-post-settings-sidebar__panel-block .components-social-icons-list {
+
+	.components-base-control {
+		margin-bottom: 8px;
+	}
+}
+
+.edit-post-settings-sidebar__panel-block .components-social-links-list {
+
+	.components-base-control {
+		margin-bottom: 8px;
+	}
+}
+
+// Styles to handle style previews for both share and social profiles.
+.components-panel__body {
+
+	.block-editor-block-styles {
+
+		.block-editor-block-preview__container {
+
+			.block-editor-block-preview__content {
+
+				.wp-block-coblocks-social {
+					align-content: center;
+					align-items: center;
+					background: transparent !important;
+					display: flex;
+					height: 100%;
+					justify-content: center;
+					margin: 10vh;
+					text-align: center !important;
+
+					&.is-style-text,
+					&.is-style-icon-and-text {
+
+						&.wp-block-coblocks-social-profiles {
+
+							.wp-block-coblocks-social__button {
+								transform: scale(3);
+							}
+						}
+
+						.wp-block-coblocks-social__button {
+							transform: scale(2);
+						}
+					}
+
+					&.is-style-mask {
+
+						.wp-block-coblocks-social__icon {
+							height: 32px !important;
+							width: 32px !important;
+						}
+					}
+
+					&.is-style-circular {
+
+						.wp-block-coblocks-social__icon {
+							height: 18px !important;
+							width: 18px !important;
+						}
+
+						.wp-block-coblocks-social__button {
+							padding: 14px !important;
+						}
+					}
+
+					.wp-block-coblocks-social__button {
+						transform: scale(4.1);
+					}
+
+					ul {
+						margin: 0;
+					}
+
+					li {
+						display: none;
+						margin: 0 !important;
+
+						&:first-child {
+							display: block;
+						}
+
+						&::before,
+						&::after {
+							display: none;
+						}
+					}
+
+					&__text {
+						max-width: 95%;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+
+					&__button {
+						margin: 0;
+						max-width: 100%;
+						padding-left: 10px;
+						padding-right: 10px;
+						width: 100%;
+
+						&.is-empty {
+							opacity: 1 !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}

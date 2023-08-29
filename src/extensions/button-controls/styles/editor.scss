@@ -1,0 +1,19 @@
+[data-coblocks-button-fullwidth="1"] {
+	width: 100% !important;
+
+	.wp-block-button,
+	.wp-block-button__link {
+		width: 100%;
+	}
+
+	+ .block-list-appender {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+
+		.block-editor-button-block-appender {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

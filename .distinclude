@@ -1,0 +1,16 @@
+# List all files and directories to be deployed with the CoBlocks
+# Use the rsync syntax https://linux.die.net/man/1/rsync
++ /assets/
++ /includes/
++ /dist/
++ /src/
++ /LICENSE
++ /readme.txt
++ /class-coblocks.php
++ /uninstall.php
+# Exclude everything else
+- /*
+- /src/*.js
+- /src/**/*.js
+- /src/**/*.scss
+- /src/**/test/

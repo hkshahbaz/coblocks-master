@@ -1,0 +1,178 @@
+[data-type="coblocks/gallery-carousel"] {
+	// Remove selected state.
+	&.block-editor-block-list__block::after {
+		box-shadow: none !important;
+	}
+
+	&[data-align="full"] > figure {
+		width: auto;
+	}
+
+	.coblocks-gallery--figure {
+		margin-bottom: 3px !important;
+		margin-top: 3px !important;
+	}
+
+	// Set the appender to full height (second is the pre Gutenberg 5.6 method).
+	.coblocks-gallery--figure .components-form-file-upload {
+		height: 100%;
+	}
+
+	// Set the carousel to 100% height in the editor
+	.wp-block-coblocks-gallery-carousel {
+
+		&,
+		.coblocks-gallery {
+			height: 100%;
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+			overflow: visible;
+		}
+	}
+
+	.wp-block-coblocks-gallery-carousel-thumbnail-pagination {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		height: auto;
+		justify-content: flex-start;
+		overflow: hidden;
+		width: 100%;
+	}
+
+	// Fixes issue with multiple dropzones displaying when dropping in an image.
+	.components-drop-zone.is-active {
+
+		+ .wp-block-coblocks-gallery-carousel div div div div div:last-child .components-drop-zone {
+			display: none;
+		}
+	}
+
+	.has-responsive-height {
+
+		> span .components-resizable-box__handle,
+		.components-resizable-box__handle {
+			display: none !important;
+		}
+
+		.carousel-nav {
+			margin-top: 0 !important;
+		}
+	}
+
+	.has-responsive-height.components-resizable-box__container {
+		height: auto !important;
+	}
+
+	.carousel-nav {
+
+		.coblocks--item-thumbnail {
+			height: 100%;
+			opacity: 0.4;
+			width: auto;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+
+		.coblocks--item-thumbnail:first-of-type {
+			opacity: 1;
+		}
+	}
+
+	.wp-block-blockgallery-thumbnails {
+		overflow: visible;
+	}
+}
+
+.wp-block-coblocks-gallery-carousel-page-dot-pagination-container {
+	align-items: center;
+	bottom: 2.2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+
+	& > .wp-block-coblocks-gallery-carousel-page-dot-wrapper {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		flex-grow: 0.1;
+		justify-content: space-evenly;
+		min-width: 45px;
+
+		& > .wp-block-coblocks-gallery-carousel-page-dot-pagination {
+			background: #fff;
+			border: none;
+			border-radius: 50%;
+			cursor: pointer;
+			height: 8px;
+			transition: background 0.2s;
+			width: 8px;
+		}
+	}
+}
+
+
+.block-editor-rich-text__editable.coblocks-gallery--caption.coblocks-gallery--primary-caption.rich-text {
+	bottom: 0.8rem !important;
+	position: absolute !important;
+}
+
+.wp-block-coblocks-gallery-carousel-thumbnail {
+	border: none;
+	cursor: pointer;
+	min-width: 100px;
+	opacity: 0.4;
+	padding: 0;
+}
+
+.wp-block-coblocks-gallery-carousel-thumbnail.is-active {
+	opacity: 1;
+}
+
+.swiper-plugin-pagination__item {
+	opacity: 0.4;
+}
+
+.swiper-plugin-pagination__item + .is-active:first-of-type {
+	opacity: 1;
+}
+
+.swiper-plugin-pagination__item.is-active {
+	opacity: 1;
+}
+
+[data-type="core/group"] .components-resizable-box__container .wp-block-coblocks-gallery-carousel {
+	margin-bottom: 40px !important;
+	margin-top: 40px !important;
+}
+
+// Shim to fix styles in the previewer.
+.block-editor-inserter__preview-content .wp-block-coblocks-gallery-carousel {
+
+	.flickity-button:disabled {
+		opacity: 1;
+	}
+}
+
+// Needed until GB 6.9 is merged into core or backward support.
+// Hide the placeholder when not selected.
+.block-editor-block-list__block[data-type="coblocks/gallery-carousel"]:not(.is-selected):not(.is-focused) .coblocks-gallery {
+
+	div.components-form-file-upload {
+		display: none;
+	}
+}
+
+.wp-block-coblocks-gallery-carousel .coblocks-gallery--item {
+	height: 100%;
+	margin: 0 !important;
+	width: 100% !important;
+}
+
+.wp-block-coblocks-gallery-carousel .has-carousel {
+	width: 100%;
+}

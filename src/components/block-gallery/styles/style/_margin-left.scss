@@ -1,0 +1,16 @@
+@include break-small() {
+	@for $i from 1 through 10 {
+
+		.has-margin-left-#{ $i * 5 } {
+			margin-left: #{ round($i * 5 * 0.5) }px !important;
+		}
+	}
+}
+@include break-small-max() {
+	@for $i from 1 through 10 {
+
+		.has-margin-left-mobile-#{ $i * 5 } {
+			margin-left: #{ round($i * 5 * 0.5) }px !important;
+		}
+	}
+}

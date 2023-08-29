@@ -1,0 +1,18 @@
+.edit-post-header__settings .edit-post-more-menu {
+	margin-left: 0.25em;
+	order: 4;
+}
+
+.interface-pinned-items {
+	display: flex;
+
+	// Settings cog
+	.components-button:first-child {
+		order: 1;
+	}
+
+	// Site design
+	.components-button:nth-child(3) {
+		order: -1;
+	}
+}

@@ -1,0 +1,66 @@
+// Grab all gallery blocks
+@mixin coblocksGalleryEditorBlocks {
+
+	[data-type="coblocks/carousel"],
+	[data-type="coblocks/collage"],
+	[data-type="coblocks/masonry"],
+	[data-type="coblocks/offset"],
+	[data-type="coblocks/stacked"] {
+		@content;
+	}
+}
+
+// Utilities
+@mixin utilities($map, $attribute, $prefix: "-", $separator: "-", $base: "base") {
+
+	@each $key, $value in $map {
+
+		&#{if($key != $base, #{$prefix}#{$key}, '')} {
+
+			@if type-of($value) == "map" {
+
+				@include utilities($value, $attribute, $separator);
+			} @else {
+				#{$attribute}: $value;
+			}
+		}
+	}
+}
+
+// Mixins to better support mobile
+@mixin break-large-max() {
+
+	@media (max-width: #{ ($break-large-max) }) {
+		@content;
+	}
+}
+@mixin break-small-max() {
+
+	@media (max-width: #{ ($break-small-max) }) {
+		@content;
+	}
+}
+@mixin input-submit-placeholder {
+	.components-placeholder {
+		height: 100%;
+
+		.components-placeholder__fieldset {
+
+			.components-placeholder__input {
+				margin-right: 5px;
+				min-width: 50%;
+
+				.components-base-control__field {
+					height: 36px;
+					margin-right: 8px;
+				}
+			}
+
+			input {
+				height: 36px;
+			}
+		}
+
+		@content;
+	}
+}

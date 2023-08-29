@@ -1,0 +1,80 @@
+.wp-block-coblocks-click-to-tweet {
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding-bottom: var(--coblocks-spacing--4);
+	padding-top: var(--coblocks-spacing--3);
+	position: relative;
+
+	&::before,
+	&::after {
+		content: none;
+	}
+
+	&__text {
+		margin-bottom: 0;
+		padding-left: 40px;
+		padding-top: 0;
+		position: relative;
+
+		&::before {
+			background-color: currentColor;
+			background-size: cover;
+			content: "";
+			display: inline-block;
+			height: 24px;
+			left: 0;
+			mask-image: url(/assets/social/twitter.svg);
+			opacity: 0.3;
+			position: absolute;
+			top: 5px;
+			width: 24px;
+		}
+
+		&::after {
+			content: none;
+		}
+
+		a {
+			box-shadow: none !important;
+			text-decoration: none !important;
+		}
+	}
+
+	&__twitter-btn {
+		appearance: none;
+		border: none;
+		border-radius: 4px;
+		box-shadow: none !important;
+		color: $white !important;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.8;
+		margin-left: 40px;
+		margin-top: 10px;
+		padding: 0.28em 1em;
+		position: relative;
+		text-decoration: none !important;
+		white-space: normal;
+		word-break: break-all;
+
+		&:not(.has-button-color) {
+			background: var(--coblocks--color--twitter, #1da1f2);
+		}
+
+		&::before {
+			background-color: $white;
+			background-size: cover;
+			content: "";
+			display: inline-block;
+			height: 18px;
+			margin-right: 5px;
+			mask-image: url(/assets/social/twitter.svg);
+			position: relative;
+			top: 4px;
+			width: 18px;
+		}
+	}
+}

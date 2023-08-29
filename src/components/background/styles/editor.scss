@@ -1,0 +1,16 @@
+.components-coblocks__background-popover .components-popover__content {
+	padding: 7px 0;
+
+	.components-dropdown-menu__menu-item {
+		background: none;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		color: $gray-900;
+		cursor: pointer;
+		justify-content: flex-start;
+		outline: none;
+		text-align: left;
+		width: 100%;
+	}
+}

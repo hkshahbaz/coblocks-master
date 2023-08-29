@@ -1,0 +1,281 @@
+.wp-block-coblocks-media-card {
+
+	&__wrapper {
+		@include break-small-max() {
+			display: block !important;
+		}
+	}
+
+	[data-type="coblocks/media-card"] & &__wrapper {
+		grid-template-areas:
+			"media-text-media media-text-content"
+			"resizer resizer";
+	}
+
+	[data-type="coblocks/media-card"] &.is-style-right &__wrapper {
+		grid-template-areas:
+			"media-text-content media-text-media"
+			"resizer resizer";
+	}
+
+	.__resizable_base__ { // stylelint-disable-line selector-class-pattern
+		grid-area: resizer;
+	}
+
+	&__media-container {
+		align-items: center !important;
+		height: 100%;
+		margin: 0;
+		text-align: center !important;
+		width: 100%;
+
+		.components-placeholder__fieldset {
+			justify-content: center;
+		}
+
+		img,
+		video {
+			vertical-align: middle;
+			width: 100%;
+		}
+	}
+
+	// Centers the spinner component, when an image is being dropped and replaced.
+	.wp-block-coblocks-media-card__placeholder {
+		position: relative;
+
+		.components-spinner {
+			left: 0;
+			left: 50%;
+			margin-left: -9px;
+			margin-top: -9px;
+			position: absolute;
+			top: 50%;
+			z-index: 9999;
+		}
+	}
+
+	// ResizableBox component.
+	.editor-media-container__resizer {
+		align-self: center;
+		grid-area: media-text-media;
+		width: 100% !important;
+
+		// Moves the handle.
+		.components-resizable-box__side-handle {
+
+			&::after {
+				top: -7px;
+			}
+		}
+
+		// Moves the handles and creates a second one so we can manipulate the
+		// ResizableBox component with the content card over the middle of the image.
+		.components-resizable-box__handle-right:not(.components-resizable-box__side-handle) {
+			bottom: 0;
+			height: 100%;
+			top: -7px;
+
+			&::before {
+				position: absolute;
+				top: 0;
+			}
+		}
+	}
+
+	// Create a fake circular handle point.
+	&:not(.has-no-media).is-selected .wp-block-coblocks-media-card__media-container {
+
+		&::after {
+			background: var(--wp-admin-theme-color, #007cba);
+			border: 2px solid $white;
+			border-radius: 50%;
+			bottom: -7px;
+			content: "";
+			cursor: inherit;
+			display: block;
+			height: 15px;
+			position: absolute;
+			width: 15px;
+			z-index: 9999;
+		}
+	}
+
+	&.is-style-left .wp-block-coblocks-media-card__media-container::after {
+		right: -8px;
+	}
+
+	&.is-style-right .wp-block-coblocks-media-card__media-container::after {
+		left: -7px;
+	}
+
+	> .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+		max-width: 100%;
+	}
+
+	.editor-media-container__resizer .components-resizable-box__handle {
+		display: none;
+	}
+
+	// Hide the wide and full alignment settings on the row.
+	.block-editor-block-toolbar .components-toolbar:nth-child(2) {
+		display: none;
+	}
+
+	&.is-selected {
+
+		.editor-media-container__resizer .components-resizable-box__handle {
+			display: block;
+		}
+
+		@include break-small-max() {
+			&.is-stacked-on-mobile {
+
+				.editor-media-container__resizer .components-resizable-box__handle {
+					display: none;
+				}
+			}
+		}
+	}
+
+	@include break-small-max() {
+		&.is-selected.is-style-right {
+
+			.editor-media-container__resizer .components-resizable-box__handle {
+				display: block;
+			}
+		}
+	}
+	@include break-small-max() {
+		&.is-stacked-on-mobile {
+
+			.wp-block-coblocks-media-card__wrapper {
+
+				.wp-block-coblocks-media-card__content {
+					margin-left: 5%;
+					margin-right: 5%;
+					margin-top: -33%;
+				}
+			}
+		}
+	}
+}
+
+[data-type="coblocks/media-card"] {
+	background: transparent !important;
+
+	.has-no-media .components-placeholder {
+		height: 70vw;
+		margin-bottom: 0;
+		margin-top: 0;
+		max-height: 600px;
+	}
+
+	&[data-align="wide"],
+	&[data-align="full"] {
+
+		.has-no-media .components-placeholder {
+			max-height: 700px;
+		}
+	}
+
+	&[data-align="center"] {
+		text-align: inherit;
+
+		.components-placeholder__instructions {
+			display: none;
+		}
+	}
+
+	.components-placeholder {
+		position: relative;
+
+		&__instructions {
+			max-width: 220px;
+
+			@media (max-width: 960px) {
+				display: none;
+			}
+		}
+	}
+
+	[data-type="coblocks/row"] .block-editor-block-mover {
+		display: none;
+	}
+
+	.components-drop-zone {
+		z-index: 0;
+	}
+
+	// Remove editor margins that do not exist on the frontend.
+	.wp-block-coblocks-media-card__content {
+
+		[data-block] {
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+
+		> .block-editor-inner-blocks {
+
+			> .block-editor-block-list__layout {
+
+				> .wp-block {
+
+					&:first-child {
+
+						> .block-editor-block-list__block-edit {
+							margin-bottom: 0;
+							margin-top: 0;
+						}
+
+						> .block-editor-block-list__insertion-point {
+							display: none;
+						}
+					}
+				}
+
+				> div {
+
+					> .block-editor-default-block-appender {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+.components-block-coblocks-media-card-maxwidth-range {
+	margin-bottom: 0.7em;
+}
+
+// IE 10+ Support
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+	.wp-block-coblocks-media-card.is-style-right {
+		display: flex;
+		flex-grow: 1;
+
+		.components-resizable-box__container {
+			order: 2;
+		}
+
+		.wp-block-coblocks-media-card__content {
+			order: 1;
+			overflow: hidden;
+		}
+	}
+}
+
+// Shim to fix styles in the previewer.
+.block-editor-inserter__preview-content .wp-block-coblocks-media-card {
+
+	.block-editor-inserter {
+		display: none !important;
+	}
+
+	.wp-block-coblocks-media-card__media-container::after,
+	.components-resizable-box__side-handle {
+		display: none;
+	}
+}

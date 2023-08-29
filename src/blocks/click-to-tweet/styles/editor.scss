@@ -1,0 +1,75 @@
+.block-editor-block-list__layout .wp-block-coblocks-click-to-tweet {
+	&::before,
+	&::after {
+		content: "";
+	}
+}
+
+.wp-block-coblocks-click-to-tweet {
+	margin: 0;
+
+	p.block-editor-rich-text__editable {
+		margin: 0;
+	}
+
+	a {
+		pointer-events: none;
+	}
+
+	&__twitter-btn {
+		line-height: 34px;
+		margin-left: 40px;
+		margin-top: 15px;
+
+		&:active::before {
+			animation: none;
+		}
+
+		&[data-is-placeholder-visible="true"] {
+			max-width: 128px;
+		}
+	}
+
+	&__via {
+		margin: 5px;
+		padding-left: 32px !important;
+	}
+
+	&__via-label {
+		align-items: center;
+		bottom: 0;
+		display: flex;
+		flex-basis: 0;
+		font-size: 12px;
+		padding: 0 10px;
+		position: absolute;
+		top: 0;
+		white-space: nowrap;
+	}
+
+	&__via-wrapper {
+		align-self: center;
+		position: relative;
+	}
+
+	//Top toolbar styling for the Twitter username field
+	.edit-post-header-toolbar__block-toolbar &__via {
+		border-color: #8d96a0;
+		border-radius: $radius-block-ui;
+		box-shadow: 0 0 0 transparent;
+		margin: 4px;
+		padding-bottom: 3px;
+		padding-top: 3px;
+
+		@media (min-width: 1080px) {
+			border-radius: 4px;
+			margin: 2px 4px;
+			padding-left: 28px !important;
+			padding-right: 4px;
+		}
+	}
+
+	.edit-post-header-toolbar__block-toolbar &__via-label {
+		padding: 0 10px;
+	}
+}

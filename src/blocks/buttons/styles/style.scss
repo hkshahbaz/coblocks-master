@@ -1,0 +1,40 @@
+$gutter: 1.35em;
+
+.wp-block-coblocks-buttons {
+
+	&__inner {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
+
+	.flex-align-left {
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	.flex-align-right {
+		align-items: flex-end;
+		justify-content: flex-end;
+	}
+
+	.wp-block-button {
+		margin-bottom: 0;
+
+		+ .wp-block-button {
+			margin-left: $gutter;
+		}
+	}
+
+	.is-stacked-on-mobile {
+
+		@media (max-width: #{ ($break-small) }) {
+			display: block;
+
+			.wp-block-button + .wp-block-button {
+				margin-left: 0;
+				margin-top: $gutter;
+			}
+		}
+	}
+}

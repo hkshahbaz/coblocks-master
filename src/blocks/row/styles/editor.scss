@@ -1,0 +1,506 @@
+[data-type="coblocks/row"] {
+
+	.components-placeholder__fieldset {
+		max-width: 100%;
+	}
+}
+
+.wp-block-coblocks-row {
+	display: block;
+
+	.wp-block-coblocks-row__inner.has-no-gutter {
+
+		> .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block > .block-editor-block-list__block-edit {
+
+			@include break-small() {
+				margin-left: -28px;
+				margin-right: -28px;
+			}
+		}
+	}
+
+	[data-type="coblocks/row"] & &__inner {
+
+		div[data-type="coblocks/column"] {
+			margin-bottom: 0;
+			margin-top: 0;
+			max-width: 100% !important;
+		}
+	}
+
+
+	[data-type="coblocks/row"][data-columns="1"] & &__inner {
+
+		.wp-block-coblocks-column__inner {
+
+			.block-editor-block-list__layout {
+
+				> .wp-block {
+					margin-left: auto;
+					margin-right: auto;
+
+					&[data-coblocks-align-support="1"] {
+						max-width: calc(6 * (100vw / 12.5)) !important;
+					}
+
+					&[data-align="wide"] {
+						max-width: calc(6 * (100vw / 8.3)) !important;
+					}
+
+					&[data-align="full"] {
+						left: auto;
+						max-width: calc(112.5% + 90px) !important;
+					}
+
+					&[data-type="coblocks/row"][data-columns="1"]:not([data-coblocks-align-support="1"]) {
+
+						.wp-block {
+							max-width: 100% !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wp-block-coblocks-row__inner > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		display: flex;
+
+		@include break-small() {
+			flex-wrap: nowrap;
+		}
+
+		// Adjust the individual column block.
+		> [data-type="coblocks/column"] {
+			margin-left: 0;
+
+			// Prevent the columns from growing wider than their distributed sizes.
+			min-width: 0;
+
+			// Prevent long unbroken words from overflowing.
+			overflow-wrap: break-word; // New standard.
+			word-break: break-word; // For back-compat.
+
+			.wp-block-coblocks-column {
+				margin: 0 !important;
+			}
+
+			// Hide column dropzones if there is no room to drop background images.
+			&[data-background-dropzone="false"] {
+
+				> .block-editor-block-list__block-edit > div > .components-drop-zone {
+					display: none;
+				}
+			}
+
+			// Ensure the column drop zone is properly indexed.
+			> .block-editor-block-list__block-edit > div > .components-drop-zone {
+				z-index: 9999;
+			}
+
+			// The Columns block is a child of the Row block and a passthrough.
+			// Therefore it shouldn't add additional paddings and margins..
+			// so we reset these, and compensate for margins.
+			> .block-editor-block-list__block-edit > div > .block-editor-inner-blocks {
+				margin-bottom: -$block-padding - $block-padding;
+				margin-top: -$block-padding - $block-padding;
+			}
+
+			> .block-editor-block-list__block-edit {
+				margin-bottom: 0;
+				margin-top: 0;
+
+				> [data-block] {
+					margin-bottom: 0;
+					margin-top: 0;
+				}
+			}
+
+			> .block-editor-block-list__block-edit > div > .wp-block-coblocks-column > .wp-block-coblocks-column > .wp-block-coblocks-column__inner > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block:first-of-type > .block-editor-block-list__block-edit {
+				margin-top: 0;
+
+				p {
+					margin-top: 0;
+				}
+			}
+
+			> .block-editor-block-list__block-edit > div > .wp-block-coblocks-column > .wp-block-coblocks-column > .wp-block-coblocks-column__inner > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block > .block-editor-block-list__block-edit {
+				margin-bottom: 0;
+			}
+
+			// Zero out margin from the default block appender.
+			> .block-editor-block-list__block-edit > div > .wp-block-coblocks-column > .wp-block-coblocks-column > .wp-block-coblocks-column__inner > .block-editor-inner-blocks > .block-editor-block-list__layout > div > .block-editor-default-block-appender
+			.block-editor-default-block-appender__content {
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+
+			// Make the column selected border dashed so we can tell it apart.
+			&.is-resizing > .block-editor-block-list__block-edit::before {
+				outline-width: 0 !important;
+			}
+
+			> .block-editor-block-list__block-edit > .block-editor-block-contextual-toolbar {
+				margin-left: -$border-width;
+			}
+
+			&.is-selected {
+
+				.components-resizable-box__container.wp-block-coblocks-column {
+					z-index: 999;
+				}
+			}
+		}
+	}
+
+	// Child blocks should be 100% wide.
+	.block-editor-inner-blocks {
+		width: 100%;
+	}
+
+	// This max-width is used to constrain the main editor column, not children.
+	.wp-block {
+		max-width: none;
+	}
+
+	// Width tag that pops up.
+	.coblocks-resizeable-width {
+		background: var(--wp-admin-theme-color, #007cba);
+		border: 2px solid $white;
+		border-radius: 4px;
+		color: $white;
+		font-family: "Helvetica Neue", sans-serif;
+		font-size: 10px;
+		line-height: 1;
+		opacity: 0;
+		padding: 0.415em 0.5em 0.445em;
+		position: absolute;
+		right: -54px;
+		text-align: center;
+		top: -17px;
+		transform: scale(0);
+		transition: opacity 50ms cubic-bezier(0.39, 0.575, 0.565, 1), transform 100ms cubic-bezier(0.39, 0.575, 0.565, 1);
+		width: 45px;
+		z-index: 9999;
+
+		&::after,
+		&::before {
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			left: 50%;
+			pointer-events: none;
+			position: absolute;
+			top: 100%;
+			width: 0;
+		}
+
+		&::before {
+			border-color: rgba(255, 255, 255, 0);
+			border-top-color: $white;
+			border-width: 6px;
+			margin-left: -6px;
+		}
+
+		&::after {
+			border-color: rgba(0, 133, 186, 0);
+			border-top-color: var(--wp-admin-theme-color, #007cba);
+			border-width: 4px;
+			margin-left: -4px;
+		}
+
+		// Only show if the column is actively being resized.
+		// &.is-resizing {
+		// 	 opacity: 1;
+		// 	 transform: scale(1);
+		// 	 transition:
+		//     opacity 100ms cubic-bezier(0.39, 0.575, 0.565, 1),
+		//     transform 100ms cubic-bezier(0.39, 0.575, 0.565, 1);
+		// }
+	}
+}
+
+.has-no-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.25em);
+	}
+
+	&:nth-child(even) {
+		margin-left: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.25em);
+	}
+
+	&:not(:first-child) {
+		margin-left: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.25em);
+	}
+
+	&:not(:last-child) {
+		margin-right: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.25em);
+	}
+}
+
+.has-small-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.6em);
+	}
+
+	&:nth-child(even) {
+		margin-left: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.6em);
+	}
+
+	&:not(:first-child) {
+		margin-left: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.6em);
+	}
+
+	&:not(:last-child) {
+		margin-right: calc(var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.6em);
+	}
+}
+
+.has-medium-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: calc(var(--coblocks-spacing--2, #{map-get($spacing, 2)}) - 0.75em);
+	}
+
+	&:nth-child(even) {
+		margin-left: calc(var(--coblocks-spacing--2, #{map-get($spacing, 2)}) - 0.75em);
+	}
+
+	&:not(:first-child) {
+		margin-left: calc(var(--coblocks-spacing--2, #{map-get($spacing, 2)}) - 0.75em);
+	}
+
+	&:not(:last-child) {
+		margin-right: calc(var(--coblocks-spacing--2, #{map-get($spacing, 2)}) - 0.75em);
+	}
+}
+
+.has-large-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: calc(var(--coblocks-spacing--3, #{map-get($spacing, 3)}) - 0.75em);
+	}
+
+	&:nth-child(even) {
+		margin-left: calc(var(--coblocks-spacing--3, #{map-get($spacing, 3)}) - 0.75em);
+	}
+
+	&:not(:first-child) {
+		margin-left: calc(var(--coblocks-spacing--3, #{map-get($spacing, 3)}) - 0.75em);
+	}
+
+	&:not(:last-child) {
+		margin-right: calc(var(--coblocks-spacing--3, #{map-get($spacing, 3)}) - 0.75em);
+	}
+}
+
+.has-huge-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: var(--coblocks-spacing--4, map-get($spacing, 4));
+	}
+
+	&:nth-child(even) {
+		margin-left: var(--coblocks-spacing--4, map-get($spacing, 4));
+	}
+
+	&:not(:first-child) {
+		margin-left: var(--coblocks-spacing--4, map-get($spacing, 4));
+	}
+
+	&:not(:last-child) {
+		margin-right: var(--coblocks-spacing--4, map-get($spacing, 4));
+	}
+}
+
+.has-custom-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"] {
+
+	&:nth-child(odd) {
+		margin-right: var(--coblocks-custom-gutter, 0);
+	}
+
+	&:nth-child(even) {
+		margin-left: var(--coblocks-custom-gutter, 0);
+	}
+
+	&:not(:first-child) {
+		margin-left: var(--coblocks-custom-gutter, 0);
+	}
+
+	&:not(:last-child) {
+		margin-right: var(--coblocks-custom-gutter, 0);
+	}
+}
+
+[class*="-gutter"] > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:last-child {
+	margin-right: 0;
+}
+
+@include break-small-max() {
+
+	.is-stacked-on-mobile > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		flex-direction: column;
+
+		> [data-type="coblocks/column"] {
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+			max-width: 100% !important;
+			width: 100% !important;
+		}
+	}
+
+	.is-stacked-on-mobile.has-no-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: 0;
+	}
+
+	.is-stacked-on-mobile.has-small-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: var(--coblocks-spacing--1, map-get($spacing, 1));
+	}
+
+	.is-stacked-on-mobile.has-medium-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: var(--coblocks-spacing--2, map-get($spacing, 2));
+	}
+
+	.is-stacked-on-mobile.has-large-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: var(--coblocks-spacing--3, map-get($spacing, 3));
+	}
+
+	.is-stacked-on-mobile.has-huge-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: var(--coblocks-spacing--4, map-get($spacing, 4));
+	}
+
+	.is-stacked-on-mobile.has-custom-gutter > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/column"]:not(:last-child) {
+		margin-bottom: var(--coblocks-custom-gutter, 0);
+	}
+}
+
+// Improve UI/X of the resizable box handles
+.wp-block-coblocks-column {
+
+	&.is-selected-column {
+
+		> span > .components-resizable-box__handle {
+			display: block;
+			right: -0.7em !important;
+		}
+	}
+
+	> span > .components-resizable-box__handle {
+
+		&::before {
+			animation: none;
+			opacity: 1;
+		}
+
+		.has-no-gutter & {
+			right: -0.625em;
+		}
+
+		.has-small-gutter & {
+			right: calc(-1.4 * var(--coblocks-spacing--1, #{map-get($spacing, 1)}) - 0.5em);
+		}
+
+		.has-medium-gutter & {
+			right: calc(-0.8 * var(--coblocks-spacing--2, #{map-get($spacing, 2)}) - 0.75em);
+		}
+
+		.has-large-gutter & {
+			right: calc(-0.85 * var(--coblocks-spacing--3, #{map-get($spacing, 3)}) - 0.75em);
+		}
+
+		.has-huge-gutter & {
+			right: calc(-0.9 * var(--coblocks-spacing--4, #{map-get($spacing, 4)}) - 0.75em);
+		}
+
+		.has-custom-gutter & {
+			right: calc(-0.9 * var(--coblocks-custom-gutter, 0) - 0.75em);
+		}
+
+		div[data-type="coblocks/row"].is-selected &,
+		div[data-type="coblocks/row"].is-resizing & {
+			display: block;
+			right: -0.7em;
+		}
+	}
+}
+
+//Fix last child hidden resizeable bar
+div[data-type="coblocks/row"].is-selected,
+div[data-type="coblocks/row"].is-resizing {
+
+	div[data-type="coblocks/column"]:last-child > div > div > {
+
+		.components-resizable-box__container.wp-block-coblocks-column > span > .components-resizable-box__handle,
+		.components-resizable-box__container.wp-block-coblocks-column::after {
+			display: none;
+		}
+	}
+}
+
+div[data-type="coblocks/column"]:last-child {
+
+	> div > div > .components-resizable-box__container.wp-block-coblocks-column.is-selected-column {
+
+		> span > .components-resizable-box__handle,
+		&::after {
+			display: none;
+		}
+	}
+}
+
+// Added for Gutenberg 6.3+
+.block-editor-block-list__block[data-type="coblocks/row"] .wp-block:first-child {
+
+	[data-block] {
+		margin-top: 0;
+	}
+}
+
+.block-editor-block-list__block[data-type="coblocks/row"] .wp-block:nth-last-child(2) {
+
+	[data-block] {
+		margin-bottom: 0;
+	}
+}
+// Add padding when the block is selected
+.block-editor-block-list__block[data-type="coblocks/row"].has-child-selected .wp-block-coblocks-row,
+.block-editor-block-list__block[data-type="coblocks/row"].is-selected .wp-block-coblocks-row {
+	padding: 14px;
+}
+
+.block-editor-block-list__block[data-type="coblocks/row"].is-selected
+[data-type="coblocks/column"]:not(.is-selected) > .block-editor-block-list__block-edit::before,
+.block-editor-block-list__block[data-type="coblocks/row"].has-child-selected
+[data-type="coblocks/column"]:not(.is-selected) > .block-editor-block-list__block-edit::before {
+	border: 1px dashed rgba(123, 134, 162, 0.3);
+}
+
+// Style the Row block placeholder state.
+.components-coblocks-row-placeholder {
+
+	.components-coblocks-row-placeholder__button-wrapper {
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 1;
+		list-style: none;
+		margin: 4px 8px 4px 0;
+	}
+
+	.components-coblocks-row-placeholder__button {
+		align-items: center;
+		background: $white;
+		border-radius: $radius-block-ui !important;
+		height: auto;
+		margin: 0;
+		padding: 16px 10px;
+	}
+
+	.components-coblocks-row-placeholder__back {
+		align-self: center;
+		border-radius: $radius-block-ui !important;
+		margin-bottom: 0;
+		margin-right: 4px;
+	}
+}

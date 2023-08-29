@@ -1,0 +1,186 @@
+.components-coblocks-icon-block--advanced-size {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+
+	.is-small {
+		margin-left: 6px;
+		margin-top: 5px;
+		order: 1;
+	}
+
+	.components-range-control {
+		width: 100%;
+	}
+}
+
+.coblocks-icon-types-list-wrapper {
+	height: 100%;
+	margin-left: 2px;
+	overflow: hidden;
+	width: calc(100% - 1px);
+
+	// Hides the vertical scroll-bar.
+	> .coblocks-icon-types-list.block-editor-block-types-list {
+		height: 100%;
+		overflow-y: scroll;
+		width: 100%;
+	}
+
+	.no-results {
+		font-style: italic;
+		margin-bottom: 0;
+		margin-left: 4px;
+		margin-top: -8px;
+	}
+}
+
+.coblocks-icon-types-list__search.components-base-control {
+	margin-bottom: 10px !important;
+}
+
+.coblocks-icon-types-list.block-editor-block-types-list {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin-top: 0;
+	max-height: 180px;
+	overflow: hidden;
+	overflow-y: scroll;
+
+	.block-editor-block-types-list__list-item {
+		margin: 0;
+		padding: 0;
+		width: 33.3%;
+
+		@media screen and (max-width: 782px) {
+			width: 31.5%;
+		}
+		@media screen and (max-width: 600px) {
+			width: 31.1%;
+		}
+
+		.components-button {
+			align-items: center;
+			border-radius: 0;
+			box-shadow: none;
+			color: $gray-900;
+			display: flex;
+			height: auto;
+			justify-content: center;
+			outline: 1px dotted transparent;
+			padding: 14px 0;
+			width: 100%;
+
+			&:hover:not(:disabled),
+			&:focus:not(:disabled) {
+				background-color: $gray-100;
+				border: 0;
+				box-shadow: none;
+				color: $gray-900;
+			}
+
+			svg {
+				fill: currentColor;
+				height: 20px;
+				margin: 0;
+				overflow: hidden;
+				padding: 0;
+				width: 20px;
+			}
+		}
+
+		.block-editor-block-types-list__item-icon {
+			color: inherit;
+			line-height: 0;
+			padding: 0;
+		}
+
+		&.selected-svg {
+
+			.components-button {
+				background: $gray-900;
+				border-color: $gray-900;
+				color: $white;
+				pointer-events: none;
+			}
+		}
+	}
+}
+
+.has-center-content .wp-block-coblocks-icon__inner.is-selected {
+
+	.components-resizable-box__handle-left,
+	.components-resizable-box__handle-right {
+		display: block !important;
+	}
+}
+
+.has-right-content .wp-block-coblocks-icon__inner.is-selected {
+
+	.components-resizable-box__handle-left {
+		display: block !important;
+	}
+
+	.components-resizable-box__handle-right {
+		display: none !important;
+	}
+}
+
+[data-type="coblocks/icon"] {
+
+	&.block-editor-block-list__block:not([contenteditable]):focus::after {
+		display: none !important;
+	}
+}
+
+.components-coblocks-icon-size__controls {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	max-width: 248px;
+
+	.components-base-control {
+		width: 45%;
+	}
+
+	.components-base-control,
+	.components-base-control__field {
+		margin-bottom: 0 !important;
+	}
+
+	.components-base-control .components-base-control__label {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute !important;
+		width: 1px;
+		word-wrap: normal !important;
+	}
+}
+
+// Shim to center buttons in the inserter preview.
+.block-editor-inserter__preview-content {
+
+	.wp-block-coblocks-icon {
+		text-align: center;
+	}
+}
+
+// Shim to get icons to display correctly in G 6.3+ only.
+.block-editor-block-preview__container .wp-block-coblocks-icon {
+	align-content: center;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+
+	.components-resizable-box__container {
+		max-width: 16em !important;
+		padding: 4em !important;
+		width: 100% !important;
+	}
+}

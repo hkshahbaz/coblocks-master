@@ -1,0 +1,38 @@
+.wp-block-coblocks-logos {
+
+	img:focus {
+		outline: none;
+	}
+
+	.block-editor-media-placeholder.is-appender {
+		margin-bottom: 0;
+		margin-top: 16px;
+		min-height: 100px;
+		outline: 1px dashed #8d96a0;
+
+		.components-placeholder__label,
+		.components-placeholder__instructions {
+			display: none;
+		}
+
+		.components-button {
+			margin-bottom: 1px;
+		}
+	}
+
+	.components-resizable-box__handle-left {
+		padding: 0 1.75vw;
+
+		&::before {
+			right: calc(41% + 0.25vw);
+		}
+	}
+
+	.components-resizable-box__handle-right {
+		padding: 0 1.75vw;
+
+		&::before {
+			right: calc(39% + 0.25vw);
+		}
+	}
+}

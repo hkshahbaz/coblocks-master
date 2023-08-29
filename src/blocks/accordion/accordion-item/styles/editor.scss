@@ -1,0 +1,100 @@
+.wp-block-coblocks-accordion-item {
+	.dashicons {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		font-size: 30px;
+		justify-content: center;
+		left: 7px;
+		position: absolute;
+		top: 15px;
+	}
+
+	p {
+		margin-top: 0;
+	}
+
+	// Remove hover and focus, as the title is a text field.
+	&__title {
+		color: inherit;
+		padding-top: 6px;
+
+		&.has-background {
+			padding: 10px 15px;
+		}
+
+		&::before {
+			content: "";
+			display: inline-block;
+			width: 20px;
+		}
+
+		&::after {
+			display: none;
+		}
+
+		&:focus {
+			outline: none !important;
+		}
+	}
+
+	&--open &__title {
+		border-radius: 4px 4px 0 0;
+	}
+
+	// Set proper margin for the first and last item within the accordion item for < Gutenberg 6.3.
+	.wp-block:first-of-type .block-editor-block-list__block-edit {
+		margin-top: 4px;
+	}
+
+	.wp-block:nth-last-child(2) .block-editor-block-list__block-edit {
+		margin-bottom: 4px;
+	}
+
+	.wp-block:first-child [data-block] {
+		margin-top: 0;
+	}
+
+	.wp-block:nth-last-child(2) [data-block] {
+		margin-bottom: 0;
+	}
+}
+
+.wp-block-coblocks-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/accordion-item"] > .block-editor-block-list__block-edit > [data-block] {
+	margin-top: 0;
+}
+
+.block-editor-block-list__layout
+.block-editor-block-list__block[data-type="coblocks/accordion-item"].has-child-selected > .block-editor-block-list__block-edit > [data-block] > div > .block-editor-inner-blocks,
+.block-editor-block-list__layout
+.block-editor-block-list__block[data-type="coblocks/accordion-item"].is-selected > .block-editor-block-list__block-edit > [data-block] > div > .block-editor-inner-blocks,
+.block-editor-block-list__layout
+.block-editor-block-list__block[data-type="coblocks/accordion"].has-child-selected > .block-editor-block-list__block-edit > [data-block] > div > .block-editor-inner-blocks,
+.block-editor-block-list__layout
+.block-editor-block-list__block[data-type="coblocks/accordion"].is-selected > .block-editor-block-list__block-edit > [data-block] > div > .block-editor-inner-blocks {
+	padding: 14px;
+}
+
+.has-child-selected
+.wp-block-coblocks-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/accordion-item"] > .block-editor-block-list__block-edit > [data-block],
+.is-selected
+.wp-block-coblocks-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/accordion-item"] > .block-editor-block-list__block-edit > [data-block] {
+	margin-bottom: 42px;
+	margin-top: 0;
+}
+
+.wp-block-coblocks-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/accordion-item"].is-selected:nth-last-child(2) > .block-editor-block-list__block-edit > [data-block] {
+	margin-bottom: 0;
+}
+
+.has-child-selected
+.wp-block-coblocks-accordion > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-type="coblocks/accordion-item"]:nth-last-child(2) > .block-editor-block-list__block-edit > [data-block] {
+	margin-bottom: -21px;
+}
+
+.block-editor-block-list__block[data-type="coblocks/accordion"].is-selected
+[data-type="coblocks/accordion-item"]:not(.is-selected) > .block-editor-block-list__block-edit::before,
+.block-editor-block-list__block[data-type="coblocks/accordion"].has-child-selected
+[data-type="coblocks/accordion-item"]:not(.is-selected) > .block-editor-block-list__block-edit::before {
+	border: 1px dashed rgba(123, 134, 162, 0.3);
+}

@@ -1,0 +1,24 @@
+// Utility class for adding a border-radius to the figure elements.
+@for $i from 2 through 20 {
+
+	.has-border-radius-#{ $i } {
+
+		.coblocks-gallery--item img {
+			border-radius: #{$i}px;
+		}
+
+		.coblocks-gallery--item figcaption {
+			border-radius: 0 0 #{$i}px #{$i}px;
+		}
+
+		// Masonry Gallery
+		.masonry-brick {
+			border-radius: #{$i}px;
+
+			figcaption {
+				border-bottom-left-radius: #{$i - 4}px !important;
+				border-bottom-right-radius: #{$i - 4}px !important;
+			}
+		}
+	}
+}

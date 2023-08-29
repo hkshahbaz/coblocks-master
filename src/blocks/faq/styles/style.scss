@@ -1,0 +1,13 @@
+.wp-block-coblocks-faq {
+	&__title {
+		margin-bottom: 0.5rem !important;
+	}
+
+	&__heading {
+		margin: 1.25rem 0 0 !important;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+}

@@ -1,0 +1,152 @@
+.wp-block-coblocks-gallery-carousel {
+	.coblocks-gallery--item {
+		height: 100%;
+		position: relative;
+		width: 100% !important;
+	}
+
+	&,
+	.coblocks-gallery {
+		overflow: hidden;
+		position: relative;
+	}
+
+	.coblocks-gallery--figure {
+		height: 100%;
+	}
+
+	@for $i from 2 through 20 {
+		.carousel-nav.has-border-radius-#{ $i } {
+			img {
+				border-radius: #{$i}px;
+			}
+		}
+	}
+
+	.carousel-nav {
+		height: auto;
+
+		.flickity-viewport {
+			height: 80px !important;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		figure {
+			margin: 0;
+		}
+
+		.coblocks--figure {
+			height: 100%;
+			position: relative;
+		}
+
+		.coblocks--item-thumbnail {
+			height: 80px;
+			opacity: 0.4;
+			overflow: hidden;
+			transition: opacity 250ms ease;
+			width: 100px;
+
+			&:hover {
+				opacity: 0.66;
+			}
+
+			&.is-selected {
+				opacity: 1;
+			}
+
+			img {
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+				top: 0;
+				vertical-align: middle;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.wp-block-coblocks-gallery-carousel-page-dot-pagination-container {
+	align-items: center;
+	bottom: 2.2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+
+	& > .wp-block-coblocks-gallery-carousel-page-dot-wrapper {
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		flex-grow: 0.1;
+		justify-content: space-evenly;
+		min-width: 45px;
+
+		& > .wp-block-coblocks-gallery-carousel-page-dot-pagination {
+			background: #fff;
+			border: none;
+			border-radius: 50%;
+			cursor: pointer;
+			height: 8px;
+			padding: 1px 6px;
+			transition: background 0.2s;
+			width: 8px;
+		}
+	}
+}
+
+.wp-block-coblocks-gallery-carousel-thumbnail-pagination {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	height: auto;
+	justify-content: flex-start;
+
+	margin: 0 auto;
+	overflow: hidden;
+
+	width: 100%;
+}
+
+.wp-block-coblocks-gallery-carousel-thumbnail {
+	border: none;
+	cursor: pointer;
+	min-width: 100px;
+	opacity: 0.4;
+	padding: 0;
+}
+
+.wp-block-coblocks-gallery-carousel-thumbnail.is-active {
+	opacity: 1;
+}
+
+.has-responsive-height.has-carousel {
+	height: auto !important;
+	position: relative;
+
+	.flickity-viewport {
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+}
+
+body.rtl {
+	.flickity-viewport {
+		position: relative;
+	}
+
+	.flickity-prev-next-button {
+		&.next {
+			left: 0;
+		}
+
+		&.previous {
+			left: unset;
+		}
+	}
+}
